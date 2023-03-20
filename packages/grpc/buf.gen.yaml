@@ -1,0 +1,8 @@
+version: v1
+plugins:
+  - remote: buf.build/stephenh/plugins/ts-proto
+    out: ./src
+    opt:
+      - nestJs=true
+      - addNestjsRestParameter=true
+      - addGrpcMetadata=true
