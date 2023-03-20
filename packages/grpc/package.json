@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
-    "codegen": "buf generate"
+    "codegen": "buf generate",
+    "build": "tsc"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

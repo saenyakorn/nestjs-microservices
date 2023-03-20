@@ -38,9 +38,10 @@ message CreateParams {
 }
 
 message UpdateParams {
-  string name = 1;
-  string owner = 2;
-  PetSpecies species = 3;
+  string id = 1;
+  optional string name = 2;
+  optional string owner = 3;
+  optional PetSpecies species = 4;
 }
 
 message DeleteParams { string id = 1; }

@@ -36,9 +36,10 @@ export interface CreateParams {
 }
 
 export interface UpdateParams {
-  name: string;
-  owner: string;
-  species: PetSpecies;
+  id: string;
+  name?: string | undefined;
+  owner?: string | undefined;
+  species?: PetSpecies | undefined;
 }
 
 export interface DeleteParams {
