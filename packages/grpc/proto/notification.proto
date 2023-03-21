@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package notification;
+
+import "google/protobuf/empty.proto";
+
+service NotificationService {
+  rpc Notify(NotifyParams) returns (NotificationMessage);
+  rpc GetNotifications(google.protobuf.Empty)
+      returns (stream NotificationMessage);
+}
+
+message NotifyParams {
+  string message = 1;
+  string email = 2;
+}
+
+message NotificationMessage {
+  string id = 1;
+  string message = 2;
+  string email = 3;
+}
