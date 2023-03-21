@@ -25,7 +25,7 @@ export class PetController implements PetServiceController {
   }
 
   findAll(request: FindAllPetParams, metadata: Metadata, ...rest: any): Observable<Pet> {
-    return this.petService.findAll()
+    return this.petService.findAll(request.offset ?? 0, request.limit ?? 20)
   }
 
   async create(request: CreatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> {

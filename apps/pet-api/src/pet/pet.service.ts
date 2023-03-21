@@ -24,9 +24,9 @@ export class PetService {
     return this.pets.find((pet) => pet.id === id)
   }
 
-  findAll(): Observable<Pet> {
+  findAll(offset: number, limit: number): Observable<Pet> {
     return new Observable((observer) => {
-      this.pets.forEach((pet) => observer.next(pet))
+      this.pets.slice(offset, offset + limit).forEach((pet) => observer.next(pet))
       observer.complete()
     })
   }
