@@ -25,8 +25,8 @@ message Pet {
 }
 
 message FindAllPetParams {
-  int32 offset = 1;
-  int32 limit = 2;
+  optional int32 offset = 1;
+  optional int32 limit = 2;
 }
 
 message FindOnePetParams { string id = 1; }

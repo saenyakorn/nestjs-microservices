@@ -21,8 +21,8 @@ export interface Pet {
 }
 
 export interface FindAllPetParams {
-  offset: number;
-  limit: number;
+  offset?: number | undefined;
+  limit?: number | undefined;
 }
 
 export interface FindOnePetParams {
