@@ -23,7 +23,7 @@ export class NotificationController implements OnModuleInit {
   @Get()
   @ApiOperation({ summary: 'Get all notifications' })
   @ApiOkResponse({ description: 'Found notifications' })
-  async findPets() {
+  async getNotification() {
     const observableNotifications = this.notificationServiceClient.getNotifications(
       {},
       new Metadata()

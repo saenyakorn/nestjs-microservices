@@ -4,7 +4,7 @@ import { ClientGrpc } from '@nestjs/microservices'
 import { Metadata } from '@grpc/grpc-js'
 import { NOTIFICATION_SERVICE_NAME, NotificationServiceClient } from 'grpc/src/proto/notification'
 import { Pet, PetSpecies } from 'grpc/src/proto/pet'
-import { Observable } from 'rxjs'
+import { Observable, firstValueFrom } from 'rxjs'
 
 @Injectable()
 export class PetService implements OnModuleInit {
@@ -39,7 +39,6 @@ export class PetService implements OnModuleInit {
   }
 
   findAll(offset: number, limit: number): Observable<Pet> {
-    this.logger.debug(this.notificationServiceClient)
     return new Observable((observer) => {
       this.pets.slice(offset, offset + limit).forEach((pet) => observer.next(pet))
       observer.complete()
@@ -53,13 +52,11 @@ export class PetService implements OnModuleInit {
       ...pet,
     }
     this.pets.push(newPet)
-    this.logger.debug(`Created new pet: ${newPet.name}`)
-    this.notificationServiceClient.notify(
-      {
-        message: `New pet created: ${newPet.name}`,
-        email: 'pet-shop@gmail.com',
-      },
-      new Metadata()
+    await firstValueFrom(
+      this.notificationServiceClient.notify(
+        { message: `New pet created: ${newPet.name}`, email: 'pet-shop@gmail.com' },
+        new Metadata()
+      )
     )
     return newPet
   }
