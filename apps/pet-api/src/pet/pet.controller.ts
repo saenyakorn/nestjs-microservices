@@ -10,7 +10,7 @@ import {
   PetServiceController,
   PetServiceControllerMethods,
   UpdatePetParams,
-} from 'grpc'
+} from 'grpc/src/proto/pet'
 import { Observable } from 'rxjs'
 
 import { PetService } from './pet.service'

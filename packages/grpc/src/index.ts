@@ -1,2 +1,2 @@
-export * from './proto/pet'
 export * from './module'
+export * from './google/protobuf/empty'

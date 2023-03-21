@@ -7,7 +7,7 @@ import {
   FindAllPetParams,
   PetSpecies,
   UpdatePetParams,
-} from 'grpc'
+} from 'grpc/src/proto/pet'
 
 export class FindAllPetQueryParams implements FindAllPetParams {
   @ApiProperty()

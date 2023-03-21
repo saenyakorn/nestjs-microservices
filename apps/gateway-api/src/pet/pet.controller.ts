@@ -11,10 +11,10 @@ import {
   Query,
 } from '@nestjs/common'
 import { ClientGrpc } from '@nestjs/microservices'
-import { ApiOkResponse, ApiQuery } from '@nestjs/swagger'
+import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger'
 
 import { Metadata } from '@grpc/grpc-js'
-import { PET_SERVICE_NAME, PetServiceClient } from 'grpc'
+import { PET_SERVICE_NAME, PetServiceClient } from 'grpc/src/proto/pet'
 
 import { observableToPromise } from '../utils'
 import {
@@ -24,6 +24,7 @@ import {
   UpdatePetRequestDTO,
 } from './pet.dto'
 
+@ApiTags('pet')
 @Controller('pets')
 export class PetController implements OnModuleInit {
   private petServiceClient: PetServiceClient

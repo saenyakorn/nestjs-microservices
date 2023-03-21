@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 
-import { Pet, PetSpecies } from 'grpc'
+import { Pet, PetSpecies } from 'grpc/src/proto/pet'
 import { Observable } from 'rxjs'
 
 @Injectable()
