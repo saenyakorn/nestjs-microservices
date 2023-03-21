@@ -1,15 +1,15 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller } from '@nestjs/common'
 
 import { Metadata } from '@grpc/grpc-js'
 import {
-  CreateParams,
-  FindAllParams,
-  FindOneParams,
+  CreatePetParams,
+  DeletePetParams,
+  FindAllPetParams,
+  FindOnePetParams,
   Pet,
   PetServiceController,
   PetServiceControllerMethods,
-  PetSpecies,
-  UpdateParams,
+  UpdatePetParams,
 } from 'grpc'
 import { Observable } from 'rxjs'
 
@@ -20,15 +20,15 @@ import { PetService } from './pet.service'
 export class PetController implements PetServiceController {
   constructor(private readonly petService: PetService) {}
 
-  async findOne(request: FindOneParams, metadata: Metadata, ...rest: any): Promise<Pet> {
+  async findOne(request: FindOnePetParams, metadata: Metadata, ...rest: any): Promise<Pet> {
     return this.petService.findOne(request.id)
   }
 
-  findAll(request: FindAllParams, metadata: Metadata, ...rest: any): Observable<Pet> {
+  findAll(request: FindAllPetParams, metadata: Metadata, ...rest: any): Observable<Pet> {
     return this.petService.findAll()
   }
 
-  async create(request: CreateParams, metadata: Metadata, ...rest: any): Promise<Pet> {
+  async create(request: CreatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> {
     return this.petService.create({
       name: request.name,
       owner: request.owner,
@@ -36,7 +36,7 @@ export class PetController implements PetServiceController {
     })
   }
 
-  async update(request: UpdateParams, metadata: Metadata, ...rest: any): Promise<Pet> {
+  async update(request: UpdatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> {
     return this.petService.update(request.id, {
       name: request.name,
       owner: request.owner,
@@ -44,7 +44,7 @@ export class PetController implements PetServiceController {
     })
   }
 
-  async delete(request: FindOneParams, metadata: Metadata, ...rest: any): Promise<Pet> {
+  async delete(request: DeletePetParams, metadata: Metadata, ...rest: any): Promise<Pet> {
     return this.petService.delete(request.id)
   }
 }

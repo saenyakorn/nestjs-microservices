@@ -3,11 +3,11 @@ syntax = "proto3";
 package pet;
 
 service PetService {
-  rpc FindAll(FindAllParams) returns (stream Pet);
-  rpc FindOne(FindOneParams) returns (Pet);
-  rpc Create(CreateParams) returns (Pet);
-  rpc Update(UpdateParams) returns (Pet);
-  rpc Delete(DeleteParams) returns (Pet);
+  rpc FindAll(FindAllPetParams) returns (stream Pet);
+  rpc FindOne(FindOnePetParams) returns (Pet);
+  rpc Create(CreatePetParams) returns (Pet);
+  rpc Update(UpdatePetParams) returns (Pet);
+  rpc Delete(DeletePetParams) returns (Pet);
 }
 
 enum PetSpecies {
@@ -24,24 +24,24 @@ message Pet {
   PetSpecies species = 4;
 }
 
-message FindAllParams {
+message FindAllPetParams {
   int32 offset = 1;
   int32 limit = 2;
 }
 
-message FindOneParams { string id = 1; }
+message FindOnePetParams { string id = 1; }
 
-message CreateParams {
+message CreatePetParams {
   string name = 1;
   string owner = 2;
   PetSpecies species = 3;
 }
 
-message UpdateParams {
+message UpdatePetParams {
   string id = 1;
   optional string name = 2;
   optional string owner = 3;
   optional PetSpecies species = 4;
 }
 
-message DeleteParams { string id = 1; }
+message DeletePetParams { string id = 1; }

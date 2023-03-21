@@ -20,56 +20,56 @@ export interface Pet {
   species: PetSpecies;
 }
 
-export interface FindAllParams {
+export interface FindAllPetParams {
   offset: number;
   limit: number;
 }
 
-export interface FindOneParams {
+export interface FindOnePetParams {
   id: string;
 }
 
-export interface CreateParams {
+export interface CreatePetParams {
   name: string;
   owner: string;
   species: PetSpecies;
 }
 
-export interface UpdateParams {
+export interface UpdatePetParams {
   id: string;
   name?: string | undefined;
   owner?: string | undefined;
   species?: PetSpecies | undefined;
 }
 
-export interface DeleteParams {
+export interface DeletePetParams {
   id: string;
 }
 
 export const PET_PACKAGE_NAME = "pet";
 
 export interface PetServiceClient {
-  findAll(request: FindAllParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  findAll(request: FindAllPetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
 
-  findOne(request: FindOneParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  findOne(request: FindOnePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
 
-  create(request: CreateParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  create(request: CreatePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
 
-  update(request: UpdateParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  update(request: UpdatePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
 
-  delete(request: DeleteParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  delete(request: DeletePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
 }
 
 export interface PetServiceController {
-  findAll(request: FindAllParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  findAll(request: FindAllPetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
 
-  findOne(request: FindOneParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  findOne(request: FindOnePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
 
-  create(request: CreateParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  create(request: CreatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
 
-  update(request: UpdateParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  update(request: UpdatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
 
-  delete(request: DeleteParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  delete(request: DeletePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
 }
 
 export function PetServiceControllerMethods() {
