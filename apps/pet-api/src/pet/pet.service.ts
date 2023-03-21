@@ -1,10 +1,15 @@
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common'
+import { ClientGrpc } from '@nestjs/microservices'
 
+import { Metadata } from '@grpc/grpc-js'
+import { NOTIFICATION_SERVICE_NAME, NotificationServiceClient } from 'grpc/src/proto/notification'
 import { Pet, PetSpecies } from 'grpc/src/proto/pet'
 import { Observable } from 'rxjs'
 
 @Injectable()
-export class PetService {
+export class PetService implements OnModuleInit {
+  private readonly logger = new Logger(PetService.name)
+
   private pets: Pet[] = [
     {
       id: '1',
@@ -20,11 +25,21 @@ export class PetService {
     },
   ]
 
+  private notificationServiceClient: NotificationServiceClient
+
+  constructor(@Inject(NOTIFICATION_SERVICE_NAME) private client: ClientGrpc) {}
+
+  onModuleInit() {
+    this.notificationServiceClient =
+      this.client.getService<NotificationServiceClient>(NOTIFICATION_SERVICE_NAME)
+  }
+
   async findOne(id: string): Promise<Pet> {
     return this.pets.find((pet) => pet.id === id)
   }
 
   findAll(offset: number, limit: number): Observable<Pet> {
+    this.logger.debug(this.notificationServiceClient)
     return new Observable((observer) => {
       this.pets.slice(offset, offset + limit).forEach((pet) => observer.next(pet))
       observer.complete()
@@ -38,6 +53,14 @@ export class PetService {
       ...pet,
     }
     this.pets.push(newPet)
+    this.logger.debug(`Created new pet: ${newPet.name}`)
+    this.notificationServiceClient.notify(
+      {
+        message: `New pet created: ${newPet.name}`,
+        email: 'pet-shop@gmail.com',
+      },
+      new Metadata()
+    )
     return newPet
   }
 

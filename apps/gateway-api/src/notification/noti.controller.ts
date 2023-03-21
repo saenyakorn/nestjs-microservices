@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Logger, OnModuleInit, Post } from '@nestjs/common'
+import { Body, Controller, Get, Inject, OnModuleInit, Post } from '@nestjs/common'
 import { ClientGrpc } from '@nestjs/microservices'
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 
