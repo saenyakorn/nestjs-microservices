@@ -20,19 +20,18 @@ export interface NotificationMessage {
 export const NOTIFICATION_PACKAGE_NAME = "notification";
 
 export interface NotificationServiceClient {
-  notify(request: NotifyParams, metadata: Metadata, ...rest: any): Observable<NotificationMessage>;
+  notify(request: NotifyParams, metadata?: Metadata): Observable<NotificationMessage>;
 
-  getNotifications(request: Empty, metadata: Metadata, ...rest: any): Observable<NotificationMessage>;
+  getNotifications(request: Empty, metadata?: Metadata): Observable<NotificationMessage>;
 }
 
 export interface NotificationServiceController {
   notify(
     request: NotifyParams,
-    metadata: Metadata,
-    ...rest: any
+    metadata?: Metadata,
   ): Promise<NotificationMessage> | Observable<NotificationMessage> | NotificationMessage;
 
-  getNotifications(request: Empty, metadata: Metadata, ...rest: any): Observable<NotificationMessage>;
+  getNotifications(request: Empty, metadata?: Metadata): Observable<NotificationMessage>;
 }
 
 export function NotificationServiceControllerMethods() {

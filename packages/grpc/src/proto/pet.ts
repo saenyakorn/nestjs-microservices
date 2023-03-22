@@ -49,27 +49,27 @@ export interface DeletePetParams {
 export const PET_PACKAGE_NAME = "pet";
 
 export interface PetServiceClient {
-  findAll(request: FindAllPetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  findAll(request: FindAllPetParams, metadata?: Metadata): Observable<Pet>;
 
-  findOne(request: FindOnePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  findOne(request: FindOnePetParams, metadata?: Metadata): Observable<Pet>;
 
-  create(request: CreatePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  create(request: CreatePetParams, metadata?: Metadata): Observable<Pet>;
 
-  update(request: UpdatePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  update(request: UpdatePetParams, metadata?: Metadata): Observable<Pet>;
 
-  delete(request: DeletePetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  delete(request: DeletePetParams, metadata?: Metadata): Observable<Pet>;
 }
 
 export interface PetServiceController {
-  findAll(request: FindAllPetParams, metadata: Metadata, ...rest: any): Observable<Pet>;
+  findAll(request: FindAllPetParams, metadata?: Metadata): Observable<Pet>;
 
-  findOne(request: FindOnePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  findOne(request: FindOnePetParams, metadata?: Metadata): Promise<Pet> | Observable<Pet> | Pet;
 
-  create(request: CreatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  create(request: CreatePetParams, metadata?: Metadata): Promise<Pet> | Observable<Pet> | Pet;
 
-  update(request: UpdatePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  update(request: UpdatePetParams, metadata?: Metadata): Promise<Pet> | Observable<Pet> | Pet;
 
-  delete(request: DeletePetParams, metadata: Metadata, ...rest: any): Promise<Pet> | Observable<Pet> | Pet;
+  delete(request: DeletePetParams, metadata?: Metadata): Promise<Pet> | Observable<Pet> | Pet;
 }
 
 export function PetServiceControllerMethods() {
